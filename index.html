@@ -1,0 +1,49 @@
+  <!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>  
+  <script type="text/javascript">
+ 
+  </script>
+</head>
+<body>  
+  <form method="post" id="myForm" enctype="multipart/form-data">
+    meu userName do gmail <input type="text" id="meugmailuser"><br>
+    minha senha: <input type="text" id="meuemail"><br>
+    email da pesosa: <input type="text" id="emailDaPessoa"><br>
+    meu email: <input type="text" id="meuemail"><br>
+    titulo do email: <input type="text" id="title"><br>
+    mensagem: <textarea id="mensagem" cols="30" rows="10"></textarea><br>
+    anexo: <input type="file" id="anexo"><br>
+    <input type="button" value="Send Email" onclick="sendEmail()"/>
+  </form>  
+  <script>
+    function sendEmail() {
+      debugger
+      Email.send({
+        Host: "smtp.gmail.com",
+        Username : document.getElementById("myForm").elements[0].value,  //email da pessoa
+        Password : document.getElementById("myForm").elements[1].value,
+        To : document.getElementById("myForm").elements[2].value,
+        From : document.getElementById("myForm").elements[3].value,
+        Subject : document.getElementById("myForm").elements[4].value,
+        Body : document.getElementById("myForm").elements[5].value,
+        Attachments : [
+          {
+            name : document.getElementById("anexo").files[0].name,
+            path: document.getElementById("anexo").files[0].name
+          }]
+      })
+      .then(function(message){
+        alert("mail sent successfully")
+      }).
+      then(function(error) {
+        console.error(error);
+      });
+      console.log(document.getElementById("myForm").elements);
+    }
+  </script>
+</body>
+
+</html>
